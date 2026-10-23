@@ -1,56 +1,58 @@
 <?php
 /**
- * Application Front Controller / Entry Point Router
+ * Application Front Controller / Router
  *
- * Intercepts all web requests, initializes class autoloading,
- * connects to MariaDB, and routes requests to BookController.
+ * Intercepts incoming web requests, registers class autoloading,
+ * connects to MariaDB, and routes requests to controllers.
  *
  * @author Senzo Earl Maseko
  */
 
-// Register custom PSR-4 simulation autoloader to dynamically load class files
+// Register PSR-4 simulation autoloader to dynamically include class files
 spl_autoload_register(function ($class) {
-    $prefix  = 'App\\';            // Target root namespace prefix
-    $baseDir = __DIR__ . '/../src/'; // Base directory for class source files
+    $prefix  = 'App\\';            // Root namespace prefix
+    $baseDir = __DIR__ . '/../src/'; // Physical directory mapping for source files
     $len     = strlen($prefix);
 
-    // Verify if the requested class uses this namespace prefix
     if (strncmp($prefix, $class, $len) !== 0) {
-        return; // Skip if class belongs to another namespace
+        return; // Skip if class does not match namespace
     }
 
-    // Strip namespace prefix and convert backslashes to directory separators
     $relativeClass = substr($class, $len);
     $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
 
-    // Require the class file if it exists on disk
     if (file_exists($file)) {
-        require $file;
+        require $file; // Require class file if found
     }
 });
 
 use App\Config\Database;
 use App\Controllers\BookController;
+use App\Controllers\DashboardController;
 
-// Initialize shared Singleton database connection object
+// Initialize shared Singleton database connection
 $db = Database::getConnection();
 
-// Instantiate the core controller, injecting the database connection
-$controller = new BookController($db);
-
-// Extract requested action route parameter from the URL GET query string (defaulting to 'index')
+// Extract requested action from URL GET parameter (defaulting to 'index')
 $action = $_GET['action'] ?? 'index';
 
-// Simple Router Dispatcher matching the requested action to controller methods
+// Route requests to appropriate controller actions
 switch ($action) {
+    case 'dashboard':
+        $dashboardController = new DashboardController($db);
+        $dashboardController->index(); // Render system dashboard / stats view
+        break;
     case 'create':
-        $controller->create(); // Render book creation form
+        $bookController = new BookController($db);
+        $bookController->create(); // Render create book form
         break;
     case 'store':
-        $controller->store();  // Handle submission to persist new book
+        $bookController = new BookController($db);
+        $bookController->store(); // Process form persistence
         break;
     case 'index':
     default:
-        $controller->index();  // Render catalog dashboard view
+        $bookController = new BookController($db);
+        $bookController->index(); // Render inventory catalog index
         break;
 }
