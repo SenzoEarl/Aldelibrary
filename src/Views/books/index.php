@@ -25,7 +25,7 @@ include __DIR__ . '/../layouts/header.php';
             <div class="fs-1 text-primary me-3"><i class="fa-solid fa-book"></i></div>
             <div>
                 <h6 class="text-muted mb-1">Total Books</h6>
-                <h3 class="fw-bold mb-0"><?php echo $totalBooks; // Display total calculated book count ?></h3>
+                <h3 class="fw-bold mb-0"><?php echo $totalBooks ?? '-\0/-'; // Display total calculated book count ?></h3>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@ include __DIR__ . '/../layouts/header.php';
             <div class="fs-1 text-success me-3"><i class="fa-solid fa-user-pen"></i></div>
             <div>
                 <h6 class="text-muted mb-1">Authors</h6>
-                <h3 class="fw-bold mb-0"><?php echo $totalAuthors; // Display total author count ?></h3>
+                <h3 class="fw-bold mb-0"><?php echo $totalAuthors ?? 0; // Display total author count ?></h3>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@ include __DIR__ . '/../layouts/header.php';
             <div class="fs-1 text-warning me-3"><i class="fa-solid fa-building"></i></div>
             <div>
                 <h6 class="text-muted mb-1">Publishers</h6>
-                <h3 class="fw-bold mb-0"><?php echo $totalPublishers; // Display publisher count ?></h3>
+                <h3 class="fw-bold mb-0"><?php echo $totalPublishers ?? 0; // Display publisher count ?></h3>
             </div>
         </div>
     </div>
