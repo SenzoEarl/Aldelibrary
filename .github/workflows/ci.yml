@@ -1,0 +1,39 @@
+name: CI - Aldelibrary
+
+# Trigger the workflow on pushes or pull requests targeting the main or master branch
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: PHP Linting & Quality Control
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository code onto the runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup PHP environment with required version
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      # Step 3: Validate composer.json syntax
+      - name: Validate Composer Configuration
+        run: composer validate --strict
+
+      # Step 4: Install project dependencies if any are specified
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      # Step 5: Run PHP syntax linter across all source and public files to catch errors
+      - name: Run PHP Syntax Linter
+        run: |
+          echo "Scanning PHP files for syntax errors..."
+          find src public -name "*.php" -print0 | xargs -0 -n 1 php -l
