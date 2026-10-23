@@ -1,0 +1,20 @@
+{
+    "name": "senzo/library-app",
+    "description": "Library Management System built with PHP, MariaDB, and Bootstrap 5.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Senzo Earl Maseko",
+            "role": "Full Stack Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.0"
+    }
+}
