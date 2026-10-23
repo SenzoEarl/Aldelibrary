@@ -15,6 +15,11 @@
       <path value="$PROJECT_DIR$/.." />
     </include_path>
   </component>
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="localhost" id="e745dbf8-b89c-4ffb-966b-a44bad9472fe" name="localhost" />
+    </servers>
+  </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>

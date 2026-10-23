@@ -2,25 +2,25 @@
 
 -- 🌍 Country Table
 CREATE TABLE IF NOT EXISTS Country (
-    country_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    country_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL
 );
 
 -- 🌐 Language Table
 CREATE TABLE IF NOT EXISTS Language (
-    language_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    language_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL
 );
 
 -- 🎭 Genre Table
 CREATE TABLE IF NOT EXISTS Genre (
-    genre_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    genre_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL
 );
 
 -- 🏢 Publisher Table
 CREATE TABLE IF NOT EXISTS Publisher (
-    publisher_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    publisher_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL,
     country_id INTEGER,
     FOREIGN KEY (country_id) REFERENCES Country(country_id)
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Publisher (
 
 -- 👤 Author Table
 CREATE TABLE IF NOT EXISTS Author (
-    author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    author_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL,
     email_id TEXT,
     linkedin_url TEXT
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Author (
 
 -- 📘 Books Table
 CREATE TABLE IF NOT EXISTS Books (
-    book_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL,
     price REAL,
     author_id INTEGER,

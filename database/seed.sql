@@ -1,5 +1,5 @@
 -- 🔄 Enable foreign key constraints
-PRAGMA foreign_keys = ON;
+SET foreign_key_checks = 1;
 
 -- 🌍 Insert Countries
 INSERT INTO Country (name) VALUES
