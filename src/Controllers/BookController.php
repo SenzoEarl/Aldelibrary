@@ -26,7 +26,7 @@ class BookController {
      * Renders catalog table view.
      */
     public function index(): void {
-        $search = $_GET['search'] ?? '';
+        $search = $_GET['search'] ??= '';
         $books  = $this->bookModel->getAllWithRelations($search);
 
         require_once __DIR__ . '/../Views/books/index.php';
