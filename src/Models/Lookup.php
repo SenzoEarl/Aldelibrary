@@ -34,16 +34,22 @@ class Lookup {
      * @return array Array of records from the requested table, or empty array if invalid.
      */
     public function getTableData(string $tableName): array {
-        // Whitelist permitted table names to prevent SQL injection via dynamic table names
-        $allowedTables = ['Author', 'Language', 'Genre', 'Publisher', 'Country'];
+        // Whitelist permitted table names and map to static queries to prevent SQL injection via dynamic table names
+        $allowedQueries = [
+            'Author'    => 'SELECT * FROM `Author`',
+            'Language'  => 'SELECT * FROM `Language`',
+            'Genre'     => 'SELECT * FROM `Genre`',
+            'Publisher' => 'SELECT * FROM `Publisher`',
+            'Country'   => 'SELECT * FROM `Country`'
+        ];
 
         // Return an empty array if an unapproved table name is passed
-        if (!in_array($tableName, $allowedTables)) {
+        if (!isset($allowedQueries[$tableName])) {
             return [];
         }
 
-        // Execute query against the verified table and fetch all records
-        $stmt = $this->db->query("SELECT * FROM `" . $tableName . "`");
+        // Execute static query for the verified table and fetch all records
+        $stmt = $this->db->query($allowedQueries[$tableName]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
