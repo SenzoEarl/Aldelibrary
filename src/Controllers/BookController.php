@@ -55,12 +55,12 @@ class BookController {
 
             if (!empty($name) && $price > 0) {
                 $this->bookModel->create($_POST);
-                header('Location: index.php?status=success');
+                header('Location: index.php?status=' . urlencode('success'));
                 exit;
             }
         }
 
-        header('Location: index.php?action=create&status=error');
+        header('Location: index.php?action=' . urlencode('create') . '&status=' . urlencode('error'));
         exit;
     }
 }
