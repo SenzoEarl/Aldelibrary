@@ -34,7 +34,7 @@ include __DIR__ . '/../layouts/header.php';
         <div class="p-3 bg-white border rounded-3 shadow-sm text-center">
             <div class="fs-1 text-primary mb-1"><i class="fa-solid fa-book"></i></div>
             <h6 class="text-muted mb-1">Total Publications</h6>
-            <h2 class="fw-bold mb-0 text-dark"><?php echo isset($totalBooks) ? $totalBooks : 0; ?></h2>
+            <h2 class="fw-bold mb-0 text-dark"><?php echo $totalBooks ?? 0; ?></h2>
         </div>
     </div>
 
@@ -43,7 +43,7 @@ include __DIR__ . '/../layouts/header.php';
         <div class="p-3 bg-white border rounded-3 shadow-sm text-center">
             <div class="fs-1 text-success mb-1"><i class="fa-solid fa-user-pen"></i></div>
             <h6 class="text-muted mb-1">Registered Authors</h6>
-            <h2 class="fw-bold mb-0 text-dark"><?php echo isset($totalAuthors) ? $totalAuthors : 0; ?></h2>
+            <h2 class="fw-bold mb-0 text-dark"><?php echo $totalAuthors ?? 0; ?></h2>
         </div>
     </div>
 
@@ -52,7 +52,7 @@ include __DIR__ . '/../layouts/header.php';
         <div class="p-3 bg-white border rounded-3 shadow-sm text-center">
             <div class="fs-1 text-warning mb-1"><i class="fa-solid fa-building"></i></div>
             <h6 class="text-muted mb-1">Publishing Houses</h6>
-            <h2 class="fw-bold mb-0 text-dark"><?php echo isset($totalPublishers) ? $totalPublishers : 0; ?></h2>
+            <h2 class="fw-bold mb-0 text-dark"><?php echo $totalPublishers ?? 0; ?></h2>
         </div>
     </div>
 
@@ -61,7 +61,7 @@ include __DIR__ . '/../layouts/header.php';
         <div class="p-3 bg-white border rounded-3 shadow-sm text-center">
             <div class="fs-1 text-info mb-1"><i class="fa-solid fa-tags"></i></div>
             <h6 class="text-muted mb-1">Literary Genres</h6>
-            <h2 class="fw-bold mb-0 text-dark"><?php echo isset($totalGenres) ? $totalGenres : 0; ?></h2>
+            <h2 class="fw-bold mb-0 text-dark"><?php echo $totalGenres ?? 0; ?></h2>
         </div>
     </div>
 </div>
